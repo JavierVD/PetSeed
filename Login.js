@@ -5,7 +5,7 @@ import {
   Text,
   View,
   Dimensions,
-  TextInput,
+  TextInput,  ToastAndroid,
   TouchableOpacity,
 } from "react-native";
 import LottieView from "lottie-react-native";
@@ -26,7 +26,7 @@ export default class Login extends React.Component {
     const onLogin = async () => {
       try {
         if (this.state.email !== '' && this.state.password !== '') {
-          fetch('localhost/htdocs/dispensador/Login.php', {
+          fetch('http://192.168.100.20/dispensador/Login.php', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
@@ -39,11 +39,14 @@ export default class Login extends React.Component {
        
             })}).then((response) => response.json())
                 .then((responseJson) => {
-                  console.log(responseJson);
+                  console.log(responseJson[0].id);
+                  AsyncStorage.setItem('@id', responseJson[0].id);
                   ToastAndroid.show('¡Bienvenido!', ToastAndroid.SHORT);
-                }).then(()=> navigate("Panel"))
+                }).then(()=> navigate("Mascota"))
                 .catch((error) => {
-                  console.error(error);
+                  this.setState({
+                    loginError: 'El usuario no existe en nuestra base de datos'
+                  });
                 });
         }else{
           this.setState({
