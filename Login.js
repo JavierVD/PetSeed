@@ -26,7 +26,7 @@ export default class Login extends React.Component {
     const onLogin = async () => {
       try {
         if (this.state.email !== '' && this.state.password !== '') {
-          fetch('http://192.168.100.20/dispensador/Login.php', {
+          fetch('http://192.168.166.81/dispensador/Login.php', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
@@ -42,7 +42,7 @@ export default class Login extends React.Component {
                   console.log(responseJson[0].id);
                   AsyncStorage.setItem('@id', responseJson[0].id);
                   ToastAndroid.show('¡Bienvenido!', ToastAndroid.SHORT);
-                }).then(()=> navigate("Mascota"))
+                }).then(()=> navigate("Panel"))
                 .catch((error) => {
                   this.setState({
                     loginError: 'El usuario no existe en nuestra base de datos'

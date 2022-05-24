@@ -57,7 +57,7 @@ export default class Mascota extends React.Component {
   }
   buscarMascota= async ()=>{
     console.log("ui usuario: " + await AsyncStorage.getItem('@id'));
-    fetch('http://192.168.100.20/dispensador/BuscarMascota.php', {
+    fetch('http://192.168.166.81/dispensador/BuscarMascota.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -81,7 +81,7 @@ export default class Mascota extends React.Component {
   }
   guardar=()=>{
     console.log("uid: " + this.state.uid);
-    const url = (this.state.guardar)? 'http://192.168.100.20/dispensador/AgregarMascota.php' : 'http://192.168.100.20/dispensador/EditarMascota.php';
+    const url = (this.state.guardar)? 'http://192.168.166.81/dispensador/AgregarMascota.php' : 'http://192.168.166.81/dispensador/EditarMascota.php';
     console.log(url);
     fetch(url, {
       method: 'POST',
@@ -102,7 +102,7 @@ export default class Mascota extends React.Component {
           .then((responseJson) => {
 
             ToastAndroid.show('¡Registro exitoso!', ToastAndroid.SHORT);
-            navigate("Login");
+            navigate("Panel");
           }).then(()=> navigate("Login"))
           .catch((error) => {
             console.log(error);

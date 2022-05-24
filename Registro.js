@@ -28,7 +28,7 @@ export default class Registro extends React.Component {
     const {navigate} = this.props.navigation;  
 
     const saveData =async ()=> {
-      fetch('http://192.168.100.20/dispensador/AgregarUsuario.php', {
+      fetch('http://192.168.166.81/dispensador/AgregarUsuario.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
